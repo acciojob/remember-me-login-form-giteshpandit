@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    #existing {
-      display: none; /* Initially hidden */
-      margin-top: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #existing {
+            display: none; /* Initially hidden */
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>Login Form</h1>
-  <form id="login-form">
-    <input type="text" id="username" placeholder="Username" required>
-    <br><br>
-    <input type="password" id="password" placeholder="Password" required>
-    <br><br>
-    <input type="checkbox" id="checkbox">
-    <label for="checkbox">Remember me</label>
-    <br><br>
-    <input type="submit" id="submit" value="Submit">
-  </form>
-  <button id="existing">Login as existing user</button>
+    <h1>Login Form</h1>
+    <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Username" required>
+        <br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Password" required>
+        <br><br>
+        <input type="checkbox" id="checkbox">
+        <label for="checkbox">Remember me</label>
+        <br><br>
+        <input type="submit" id="submit" value="Submit">
+    </form>
+    <button id="existing">Login as existing user</button>
 
-  <script src="login.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>
 
