@@ -1,38 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        #existing {
-            display: none; /* Initially hidden */
-            margin-top: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
 </head>
 <body>
+  <!-- Login Form -->
+  <h1>Login Form</h1>
+  <form id="loginForm">
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <label>
+      <input type="checkbox" id="checkbox"> Remember me
+    </label>
+    <input type="submit" id="submit" value="Submit">
+  </form>
+  
+  <!-- Existing User Button (Initially Hidden) -->
+  <button id="existing" style="display: none;">Login as existing user</button>
 
-    <h1>Login Form</h1>
-    <form id="login-form">
-        <label for="username">Username:</label>
-        <input type="text" id="username" placeholder="Username" required>
-        <br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" placeholder="Password" required>
-        <br><br>
-        <input type="checkbox" id="checkbox">
-        <label for="checkbox">Remember me</label>
-        <br><br>
-        <input type="submit" id="submit" value="Submit">
-    </form>
-    <button id="existing">Login as existing user</button>
+  <script>
+    // Select DOM elements
+    const loginForm = document.getElementById('loginForm');
+    const existingUserButton = document.getElementById('existing');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const rememberMeCheckbox = document.getElementById('checkbox');
 
-    <script src="login.js"></script>
+    // Check if saved details exist on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('username') && localStorage.getItem('password')) {
+        existingUserButton.style.display = 'inline';
+      }
+    });
+
+    // Login form submission event
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault(); // Prevent form from reloading the page
+
+      const username = usernameInput.value;
+      const password = passwordInput.value;
+
+      if (rememberMeCheckbox.checked) {
+        // Save details in local storage if "Remember me" is checked
+        localStorage.setItem('username', username);
+        localStorage.setItem('password', password);
+      } else {
+        // Remove details if "Remember me" is unchecked
+        localStorage.removeItem('username');
+        localStorage.removeItem('password');
+      }
+
+      alert(`Logged in as ${username}`);
+      
+      // Show existing user button if details are saved
+      if (localStorage.getItem('username') && localStorage.getItem('password')) {
+        existingUserButton.style.display = 'inline';
+      }
+    });
+
+    // Existing user button event
+    existingUserButton.addEventListener('click', () => {
+      const savedUsername = localStorage.getItem('username');
+      alert(`Logged in as ${savedUsername}`);
+    });
+  </script>
 </body>
 </html>
+
 
